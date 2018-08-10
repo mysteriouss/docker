@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-exec /usr/bin/55-server -c /etc/55-server/config.json 2>&1
+exec /usr/bin/55-server -c /etc/55-server/config.json
