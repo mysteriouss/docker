@@ -54,7 +54,7 @@ RUN set -ex \
     && rm -rf /tmp/libev \
     && mv /usr/bin/ss-server /usr/bin/55-server \
     && mv /usr/bin/obfs-server /usr/bin/55-obfs \
-    && apk add --update --no-cache unbound ca-certificates s6 \
+    && apk add --update --no-cache bind-tools unbound ca-certificates s6 \
     && update-ca-certificates 2>/dev/null || true
 
 COPY files/root/ /
