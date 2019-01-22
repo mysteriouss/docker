@@ -26,17 +26,10 @@ RUN set -ex \
     && mkdir -p /opt/ \
     && cd /opt/ \
     && pip3 install --upgrade pip \
-    && git clone 'https://github.com/blueset/ehForwarderBot.git' \
-    && cd ehForwarderBot \
-    && pip3 install . \
-    && cd /opt/ \
-    && git clone 'https://github.com/blueset/efb-telegram-master.git' \
-    && cd efb-telegram-master \
-    && pip3 install . \
-    && cd /opt/ \
-    && git clone 'https://github.com/blueset/efb-wechat-slave.git' \
-    && cd efb-wechat-slave \
-    && pip3 install . \
-    && cd /opt/
+    && pip3 install git+https://github.com/blueset/ehForwarderBot.git \
+    && pip3 install git+https://github.com/blueset/efb-telegram-master.git \
+    && pip3 install git+https://github.com/blueset/efb-wechat-slave.git \
 
-WORKDIR /
+WORKDIR /opt
+
+ENTRYPOINT ["ehForwarderBot"]
