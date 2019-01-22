@@ -32,4 +32,4 @@ RUN set -ex \
 
 WORKDIR /opt
 
-ENTRYPOINT ["ehForwarderBot"]
+ENTRYPOINT ["ehforwarderbot"]
