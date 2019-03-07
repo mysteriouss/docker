@@ -26,9 +26,9 @@ RUN set -ex \
     && mkdir -p /opt/ \
     && cd /opt/ \
     && pip3 install --upgrade pip \
-    && pip3 install ehForwarderBot \
-    && pip3 install efb-telegram-master \
-    && pip3 install efb-wechat-slave
+    && pip3 install git+https://github.com/blueset/ehForwarderBot.git \
+    && pip3 install git+https://github.com/blueset/efb-telegram-master.git \
+    && pip3 install git+https://github.com/blueset/efb-wechat-slave.git
 
 WORKDIR /opt
 
