@@ -1,0 +1,12 @@
+version: '3.4'
+services:
+  55-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    #ports:
+    #  - "127.0.0.1:80:80"
+    network_mode: "host"
+    #volumes:
+    #  -
+    restart: always
