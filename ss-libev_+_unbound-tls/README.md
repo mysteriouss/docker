@@ -1,8 +1,7 @@
 
 ```bash
-[USAGE]
-
 $ git clone 'https://github.com/mysteriouss/docker' 
+
 $ cd docker/ss-libev_+_unbound-tls/alpine/80
 $ docker build -t="55-server" .
 $ docker run -it --network=host 55-server
