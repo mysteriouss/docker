@@ -64,7 +64,6 @@ RUN set -ex \
 
 COPY files/root/ /
 VOLUME /config
-VOLUME /service
 
 # fixups
 RUN    chmod a+x /service/*/run
