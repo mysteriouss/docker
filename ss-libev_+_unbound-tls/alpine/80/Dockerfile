@@ -8,7 +8,7 @@
 FROM alpine:latest
 LABEL maintainer="mysteriouss"
 
-ENV LIBEV_VER 3.3.1
+ENV LIBEV_VER 3.3.3
 ENV LIBEV_NAME shadowsocks-libev-${LIBEV_VER}
 ENV LIBEV_RELEASE https://github.com/shadowsocks/shadowsocks-libev/releases/download/v${LIBEV_VER}/${LIBEV_NAME}.tar.gz
 
@@ -54,10 +54,17 @@ RUN set -ex \
     && rm -rf /tmp/libev \
     && mv /usr/bin/ss-server /usr/bin/55-server \
     && mv /usr/bin/obfs-server /usr/bin/55-obfs \
+    && mv /usr/bin/ss-local /usr/bin/55-local \
+    && mv /usr/bin/ss-redir /usr/bin/55-redir \
+    && mv /usr/bin/ss-tunnel /usr/bin/55-tun \
+    && mv /usr/bin/ss-manager /usr/bin/55-manager \
+    && mv /usr/bin/ss-nat /usr/bin/55-nat \
     && apk add --update --no-cache bind-tools unbound ca-certificates s6 \
     && update-ca-certificates 2>/dev/null || true
 
 COPY files/root/ /
+VOLUME /config
+VOLUME /service
 
 # fixups
 RUN    chmod a+x /service/*/run
