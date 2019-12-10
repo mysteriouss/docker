@@ -5,12 +5,15 @@
 # https://github.com/teddysun/shadowsocks_install/tree/master/docker/shadowsocks-libev
 # https://github.com/ajoergensen/docker-unbound
 
-FROM alpine:latest
+FROM alpine:edge
 LABEL maintainer="mysteriouss"
 
 ENV LIBEV_VER 3.3.3
 ENV LIBEV_NAME shadowsocks-libev-${LIBEV_VER}
 ENV LIBEV_RELEASE https://github.com/shadowsocks/shadowsocks-libev/releases/download/v${LIBEV_VER}/${LIBEV_NAME}.tar.gz
+
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+RUN apk update && apk upgrade
 
 RUN set -ex \
     && runDeps=' \
@@ -49,7 +52,6 @@ RUN set -ex \
       | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
       | xargs -r apk info --installed \
       | sort -u) \
-    && apk del .build-deps \
     && cd /tmp \
     && rm -rf /tmp/libev \
     && mv /usr/bin/ss-server /usr/bin/55-server \
@@ -60,7 +62,9 @@ RUN set -ex \
     && mv /usr/bin/ss-manager /usr/bin/55-manager \
     && mv /usr/bin/ss-nat /usr/bin/55-nat \
     && apk add --update --no-cache bind-tools unbound ca-certificates s6 \
-    && update-ca-certificates 2>/dev/null || true
+    && update-ca-certificates 2>/dev/null || true \
+    && apk del .build-deps \
+    && rm -rf /var/cache/apk/*
 
 COPY files/root/ /
 VOLUME /config
