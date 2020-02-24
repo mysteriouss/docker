@@ -1,19 +1,14 @@
 
 ```bash
-$ git clone 'https://github.com/mysteriouss/docker' 
 
-$ cd docker/ss-libev_+_unbound-tls/alpine
-$ docker build -t="55-server" .
-$ docker run -itd --network=host -v $(pwd)/config:/config:rw 55-server
+  p=YOUR_CUSTOM_PASSWORD && \
+  git clone 'https://github.com/mysteriouss/docker.git' && \
+  cd docker && \
+  sh install.sh && \
+  cd ss-libev_+_unbound-tls/alpine && \
+  sed 's/YOURPASSWORD/'$p'/g' -i config/55-server/config.json && \
+  sed 's/YOURPASSWORD/'$p'/g' -i config/55-server-8989/config.json && \
+  docker-compose up
 
-or simply run
-
-$ cd docker/ss-libev_+_unbound-tls/alpine
-$ sh start.sh
-
-or
-
-$ cd docker/ss-libev_+_unbound-tls/alpine
-$ docker-compose up
 ```
 
