@@ -8,7 +8,7 @@
 FROM alpine:edge
 LABEL maintainer="mysteriouss"
 
-ENV LIBEV_VER 3.3.3
+ENV LIBEV_VER 3.3.4
 ENV LIBEV_NAME shadowsocks-libev-${LIBEV_VER}
 ENV LIBEV_RELEASE https://github.com/shadowsocks/shadowsocks-libev/releases/download/v${LIBEV_VER}/${LIBEV_NAME}.tar.gz
 
