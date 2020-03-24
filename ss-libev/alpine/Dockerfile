@@ -5,7 +5,7 @@
 # https://github.com/teddysun/shadowsocks_install/tree/master/docker/shadowsocks-libev
 # https://github.com/ajoergensen/docker-unbound
 
-FROM alpine:edge
+FROM alpine:3.10
 LABEL maintainer="mysteriouss"
 
 ENV LIBEV_VER 3.3.4

@@ -3,7 +3,7 @@
 # Reference URL:
 # 
 
-FROM alpine:latest
+FROM alpine:3.10
 
 ENV LANG C.UTF-8
 
@@ -20,6 +20,8 @@ RUN set -ex \
        python3 \
        py3-numpy \
        py3-pillow \
+       py3-pip \
+       py3-cairo \
        ' \
     && apk add --no-cache --virtual .build-deps \
        ${runDeps} \
