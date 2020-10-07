@@ -31,14 +31,14 @@ _centos() {
 }
 
 _arch() {
-    pacman -S docker docker-compose
+    yes | pacman -Sy docker docker-compose
     systemctl start docker
     systemctl enable docker
 }
 
 _main() {
     case "$(_os_full)" in
-        "Arch Linux")
+        "Arch Linux ")
             _arch
             ;;
         "CentOS Linux 7")
