@@ -5,17 +5,15 @@
 # https://github.com/teddysun/shadowsocks_install/tree/master/docker/shadowsocks-libev
 # https://github.com/ajoergensen/docker-unbound
 
-FROM alpine:3.10
+FROM alpine:3.12
 LABEL maintainer="mysteriouss"
 
-ENV LIBEV_VER 3.3.4
+ENV LIBEV_VER 3.3.5
 ENV LIBEV_NAME shadowsocks-libev-${LIBEV_VER}
 ENV LIBEV_RELEASE https://github.com/shadowsocks/shadowsocks-libev/releases/download/v${LIBEV_VER}/${LIBEV_NAME}.tar.gz
 
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
-RUN apk update && apk upgrade
-
-RUN set -ex \
+RUN apk update && apk upgrade && \
+    set -ex \
     && runDeps=' \
        tar \
        git \
@@ -67,7 +65,8 @@ RUN set -ex \
     && rm -rf /var/cache/apk/*
 
 COPY files/root/ /
-VOLUME /config
+COPY config/ /config/
+
 
 # fixups
 RUN    chmod a+x /service/*/run
