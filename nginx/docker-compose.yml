@@ -1,0 +1,31 @@
+version: "3"
+services:
+  nginx:
+    build:
+      context: .
+    container_name: nginx
+    labels:
+      - sh.acme.autoload.domain=example.com
+    volumes:
+      - ./html:/usr/share/nginx/html
+      - ./conf.d:/etc/nginx/conf.d
+      - ./logs:/var/log/nginx
+      - ./certs:/etc/nginx/certs
+      - ./self-signed:/root/self-signed
+    network_mode: host
+
+  acme.sh:
+    image: neilpang/acme.sh
+    container_name: acme.sh
+    command: daemon
+    volumes:
+      - ./acme.sh:/acme.sh
+      - ./certs:/etc/nginx/certs
+      - /var/run/docker.sock:/var/run/docker.sock 
+    environment:
+      - DEPLOY_DOCKER_CONTAINER_LABEL=sh.acme.autoload.domain=example.com
+      - DEPLOY_DOCKER_CONTAINER_KEY_FILE=/etc/nginx/certs/example.com/key.pem
+      - DEPLOY_DOCKER_CONTAINER_CERT_FILE="/etc/nginx/certs/example.com/cert.pem"
+      - DEPLOY_DOCKER_CONTAINER_CA_FILE="/etc/nginx/certs/example.com/ca.pem"
+      - DEPLOY_DOCKER_CONTAINER_FULLCHAIN_FILE="/etc/nginx/certs/example.com/full.pem"
+      - DEPLOY_DOCKER_CONTAINER_RELOAD_CMD="service nginx force-reload"

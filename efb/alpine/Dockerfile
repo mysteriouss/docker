@@ -27,6 +27,7 @@ RUN set -ex \
        py3-pillow \
        py3-pip \
        py3-cairo \
+       py3-cryptography \
        ffmpeg \
        libmagic \
     && pip3 install --upgrade pip \
