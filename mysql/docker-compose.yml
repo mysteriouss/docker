@@ -1,0 +1,21 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+    ports:
+      - 0.0.0.0:3306:3306
+    volumes:
+      - ./conf.d:/etc/mysql/conf.d
+      - ./data:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    #environment:
+    #  ADMINER_DEFAULT_SERVER: 172.31.0.1
+    restart: always
+    ports:
+      -  0.0.0.0:8081:8080
