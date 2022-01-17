@@ -7,6 +7,8 @@ FROM alpine:3.10
 
 ENV LANG C.UTF-8
 
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
+
 RUN set -ex \
     && runDeps=' \
        tar \
@@ -33,7 +35,7 @@ RUN set -ex \
     && pip3 install --upgrade pip \
     && pip3 install ehForwarderBot \
     && pip3 install efb-telegram-master \
-    && pip3 install efb-wechat-slave \
+    && pip3 install efb-wechat-slave==2.0.4 \
     && apk del .build-deps \
     && rm -rf /var/cache/apk/* 
 
