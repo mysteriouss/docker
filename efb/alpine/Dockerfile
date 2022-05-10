@@ -35,7 +35,7 @@ RUN set -ex \
     && pip3 install --upgrade pip \
     && pip3 install ehForwarderBot \
     && pip3 install efb-telegram-master \
-    && pip3 install efb-wechat-slave==2.0.4 \
+    && pip3 install efb-wechat-slave \
     && apk del .build-deps \
     && rm -rf /var/cache/apk/* 
 
