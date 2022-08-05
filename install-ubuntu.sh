@@ -1,6 +1,6 @@
 #!/bin/sh
 
-apt-get remove docker docker-engine docker.io containerd runc
+#apt-get remove docker docker-engine docker.io containerd runc
 apt-get update
 apt-get install -y  \
     apt-transport-https \
@@ -12,6 +12,6 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o 
 echo \
   "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose
+apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose
 
 #run as root
