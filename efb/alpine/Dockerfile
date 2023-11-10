@@ -9,12 +9,8 @@ ENV LANG C.UTF-8
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
 
-RUN set -ex \
+RUN set -ex && apk add --update --no-cache tar git wget curl \
     && runDeps=' \
-       tar \
-       git \
-       wget \
-       curl \
        gcc \
        musl-dev \
        python3-dev \
